@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
@@ -39,8 +40,11 @@ public class UserPageRepositoryTest extends AbstractTransactionalJUnit4SpringCon
     super.setDataSource(dataSource);
   }
 
+  protected static final int ITEMS_PER_PAGE = 10;
 
-
+  private Pageable buildPageRequest(int pageIndex) {
+          return new PageRequest(pageIndex,    ITEMS_PER_PAGE );
+     }
 
   @Test
   public void pageAllUsersByFirstName() {
