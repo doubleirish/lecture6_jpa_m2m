@@ -83,4 +83,21 @@ public class Board implements Serializable {
         ", symbol='" + symbol + '\'' +
         '}';
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Board)) return false;
+
+    Board board = (Board) o;
+
+    if (!symbol.equals(board.symbol)) return false;
+
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    return symbol.hashCode();
+  }
 }

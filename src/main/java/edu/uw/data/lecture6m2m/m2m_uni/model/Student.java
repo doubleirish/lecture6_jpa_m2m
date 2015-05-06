@@ -122,6 +122,22 @@ public class Student implements Serializable {
         '}';
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Student)) return false;
+
+    Student student = (Student) o;
+
+    if (!userName.equals(student.userName)) return false;
+
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    return userName.hashCode();
+  }
 
   public static class Builder {
       private Student student;

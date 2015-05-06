@@ -66,6 +66,24 @@ public class Project {
     this.projectName = projectName;
   }
 
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Project)) return false;
+
+    Project project = (Project) o;
+
+    if (!projectName.equals(project.projectName)) return false;
+
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    return projectName.hashCode();
+  }
+
   @Override
   public String toString() {
     return Objects.toStringHelper(this)

@@ -123,6 +123,26 @@ public class Director implements Serializable {
         '}';
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Director)) return false;
+
+    Director director = (Director) o;
+
+    if (!firstName.equals(director.firstName)) return false;
+    if (!lastName.equals(director.lastName)) return false;
+
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = firstName.hashCode();
+    result = 31 * result + lastName.hashCode();
+    return result;
+  }
+
   public static class Builder {
       private Director student;
 
