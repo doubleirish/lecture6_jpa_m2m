@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -84,7 +85,7 @@ public class UserPageRepositoryTest extends AbstractTransactionalJUnit4SpringCon
                         PAGE_SIZE,
                         Sort.Direction.ASC,
                         "billingAddr.street");
-        Iterable<User> users = userPageRepository.findAll(pageRequest);
+        Page<User> users = userPageRepository.findAll(pageRequest);
         System.out.println("Page "+pageNumber);;
         users.forEach( user -> System.out.println(user.getBillingAddr().getStreet()));
 

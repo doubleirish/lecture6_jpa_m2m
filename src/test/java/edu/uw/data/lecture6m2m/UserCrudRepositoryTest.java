@@ -15,7 +15,9 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
+import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 /**
  * Embedded database is  always initialized cleasnly  as its stored in the target subdir which is cleared out on each run
@@ -38,7 +40,12 @@ public class UserCrudRepositoryTest extends AbstractTransactionalJUnit4SpringCon
   }
 
 
-
+// TODO CRUD Lab 1 (CRUD) modify the  new test method below to call userCrudRepository.count() call
+  @Test
+  public void countTest_LAB() {
+    long count = 0; // TODO LAB replace this line to call count() method on userCrudRepository
+    assertThat(count, greaterThan(0L));
+  }
 
   @Test
   public void findAllUsers() {

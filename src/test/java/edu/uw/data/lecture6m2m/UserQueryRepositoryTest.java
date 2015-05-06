@@ -16,7 +16,9 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.List;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 /**
  * Embedded database is  always initialized cleasnly  as its stored in the target subdir which is cleared out on each run
@@ -30,7 +32,7 @@ public class UserQueryRepositoryTest extends AbstractTransactionalJUnit4SpringCo
   static final Logger log = LoggerFactory.getLogger(UserQueryRepositoryTest.class);
 
   @Resource
-  private UserCrudRepository userCrudRepository;
+    private UserCrudRepository userCrudRepository;
 
   @Override
   @Resource(name = "dataSource")
@@ -39,6 +41,32 @@ public class UserQueryRepositoryTest extends AbstractTransactionalJUnit4SpringCo
   }
 
 
+
+ // Query LAB 1 HQL from Method name
+  @Test
+  public void findByBillingAddrStateOrderByCreditcardExpirationDateTest_LAB() {
+    List<User> users = userCrudRepository.findByBillingAddrStateOrderByCreditCardExpirationDate("WA");
+
+
+    assertNotNull(users);
+    for (User user : users) {
+      System.out.println( user.getBillingAddr().getState() +" "+user.getCreditCard().getExpirationDate());
+    }
+    assertThat(users.size(),is(5));
+  }
+
+
+  // Query LAB 2 @Query
+  //  @Test
+//  public void findUserWithUnExpiredCreditCardTest() {
+//    List<User> users = userCrudRepository.findUsersWithUnExpiredCreditCard(); // TODO Lab 2 add @Query to UserCrudRepository.findUsersWithUnExpiredCreditCard()
+//
+//    assertNotNull(users);
+//    for (User user : users) {
+//      System.out.println( user.getBillingAddr().getState() +" "+user.getCreditCard().getExpirationDate());
+//    }
+//    assertThat(users.size(),is(4));
+//  }
 
 
   @Test
@@ -61,15 +89,7 @@ public class UserQueryRepositoryTest extends AbstractTransactionalJUnit4SpringCo
     }
   }
 
-  @Test
-  public void findByBillingAddrStateOrderByCreditcardExpirationDate() {
-    List<User> users = userCrudRepository.findByBillingAddrStateOrderByCreditCardExpirationDate("WA");
 
-    assertNotNull(users);
-    for (User user : users) {
-      System.out.println( user.getBillingAddr().getState() +" "+user.getCreditCard().getExpirationDate());
-    }
-  }
 
 
   @Test
