@@ -28,7 +28,7 @@ import static org.junit.Assert.assertTrue;
  * Embedded database is  always initialized cleasnly  as its stored in the target subdir which is cleared out on each run
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/app-spring.xml", "classpath:/datasource-embedded-init.xml"})
+@ContextConfiguration(locations = {"classpath:/app-spring.xml", "classpath:/datasource-embedded-init-p6spy.xml"})
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 
 public class ProjectEmployeeDao_m2m_add_cols_Test extends AbstractTransactionalJUnit4SpringContextTests {
