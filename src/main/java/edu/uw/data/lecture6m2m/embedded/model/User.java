@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -41,6 +42,11 @@ public class User implements Serializable {
     @Embedded
     private CreditCard creditCard;
 
+
+    // TODO Embedded LAB : annotate this property so it is embedded
+    @Transient  // TODO replace @Transient
+
+    private Profile profile;
 
     public Integer getId() {
         return id;
@@ -82,7 +88,15 @@ public class User implements Serializable {
         this.creditCard = creditCard;
     }
 
-    @Override
+  public Profile getProfile() {
+    return profile;
+  }
+
+  public void setProfile(Profile profile) {
+    this.profile = profile;
+  }
+
+  @Override
     public String toString() {
         ToStringBuilder.setDefaultStyle(ToStringStyle.MULTI_LINE_STYLE);
         return new ToStringBuilder(this)
@@ -90,6 +104,7 @@ public class User implements Serializable {
                 .append("firstName", firstName)
                 .append("lastName", lastName)
                 .append("creditCard", creditCard)
+                .append("profile", profile)
                 .append("billingAddr", billingAddr)
                 .append("shippingAddr", shippingAddr)
                 .toString();

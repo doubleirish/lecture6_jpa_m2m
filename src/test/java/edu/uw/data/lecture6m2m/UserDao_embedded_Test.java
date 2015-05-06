@@ -43,13 +43,30 @@ public class UserDao_embedded_Test extends AbstractTransactionalJUnit4SpringCont
 
 
   @Test
-  public void findAllUsers() {
+  public void verifyCreditCardWasEmbeddedCorrectlyTest(){
     List<User> users = userDao.findAll();
     assertNotNull(users);
+
     assertTrue(users.size() > 0);
+
     for (User user : users) {
       System.out.println("user with embedded credit card"+user);
     }
+    assertNotNull(users.get(0).getCreditCard());
+
+  }
+
+  @Test
+  public void verifyProfileWasEmbeddedCorrectlyTest_LAB() {
+    List<User> users = userDao.findAll();
+    assertNotNull(users);
+
+    assertTrue(users.size() > 0);
+
+    for (User user : users) {
+      System.out.println("user with embedded profile "+user);
+    }
+    assertNotNull(users.get(0).getProfile());
 
   }
 
